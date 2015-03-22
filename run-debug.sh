@@ -6,7 +6,7 @@ $DIR/common-run.sh
 
 docker run \
 -p 80:80 \
---name nginx-php \
+--name nginx \
 -it \
-bmichalski/nginx-php \
+bmichalski/nginx \
 bash

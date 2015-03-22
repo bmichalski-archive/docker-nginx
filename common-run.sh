@@ -1,9 +1,9 @@
 #!/bin/bash
 
-NGINX_PHP_EXISTS=`docker inspect --format="{{ .Id }}" nginx-php 2> /dev/null`
+NGINX_EXISTS=`docker inspect --format="{{ .Id }}" nginx 2> /dev/null`
 
-if ! [ -z "$NGINX_PHP_EXISTS" ]
+if ! [ -z "$NGINX_EXISTS" ]
 then
-  docker kill nginx-php
-  docker rm nginx-php
+  docker kill nginx
+  docker rm nginx
 fi
