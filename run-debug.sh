@@ -1,12 +1,17 @@
 #!/bin/bash
 
-DIR=$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )
+NGINX_EXISTS=`docker inspect --format="{{ .Id }}" nginx 2> /dev/null`
 
-$DIR/common-run.sh
+if ! [ -z "$NGINX_EXISTS" ]
+then
+  docker kill nginx
+  docker rm nginx
+fi
 
 docker run \
--p 80:80 \
---name nginx \
--it \
-bmichalski/nginx \
-bash
+  -p 80 \
+  --name nginx \
+  -it \
+  bmichalski/nginx \
+  bash
+

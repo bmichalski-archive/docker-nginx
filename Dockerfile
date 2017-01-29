@@ -1,15 +1,9 @@
-FROM bmichalski/base
+FROM ubuntu:16.04
 
 RUN \
-  base/configure.sh && \
+  apt-get update -y && \
   apt-get install -y \
     nginx
 
-COPY conf/root/configure.sh /root/configure.sh
-COPY conf/root/on-startup.sh /root/on-startup.sh
+CMD service nginx start && tail -f /var/log/nginx/*.log
 
-RUN chmod u+x /root/configure.sh
-RUN chmod u+x /root/on-startup.sh
-
-CMD \
-  /root/on-startup.sh
