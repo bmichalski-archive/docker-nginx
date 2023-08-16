@@ -14,4 +14,3 @@ docker run \
   -it \
   bmichalski/nginx \
   bash
-
